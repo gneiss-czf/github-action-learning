@@ -34,8 +34,13 @@ public class ResourceLeakExample {
    }
 	
 	public void main3() {
-		String password = "12345"; 
-        System.out.println(password);
+		// 不要硬编码密码,应该从环境变量或配置文件中读取
+		String password = System.getenv("USER_PASSWORD"); 
+		if (password == null) {
+			System.err.println("Password not found in environment variables");
+			return;
+		}
+        System.out.println("Password loaded successfully");
     }
 
 }
